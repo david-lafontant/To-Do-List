@@ -2,7 +2,6 @@ import _ from 'lodash';
 import './index.css';
 
 const taskList = document.querySelector('.list');
-const arr = [];
 const task = [
   {
     id: 0,
@@ -19,15 +18,19 @@ const task = [
     description: 'Take a break',
     completed: false,
   },
+  {
+    id: 3,
+    description: 'Buy groceries',
+    completed: false,
+  },
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-  task.forEach((elem, num) => {
-    arr.push(elem);
+  task.forEach((elem) => {
     const listItem = document.createElement('li');
     listItem.setAttribute('class', 'item');
-    listItem.innerHTML = `<i class="far fa-square" id=${task[num].id}></i>
-    <p class='description'>${task[num].description}</p>
+    listItem.innerHTML = `<i class="far fa-square" id=${elem.id}></i>
+    <p class='description'>${elem.description}</p>
     <i class="fas fa-ellipsis-v"></i>`;
     taskList.appendChild(listItem);
   });
