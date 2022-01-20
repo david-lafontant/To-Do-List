@@ -8,7 +8,6 @@ module.exports = {
     static: './dist',
   },
   entry: './src/index.js',
-  devtool: 'inline-source-map',
   devServer: {
     static: './dist',
   },
