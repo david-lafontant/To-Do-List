@@ -1,3 +1,6 @@
+import _ from 'lodash';
+import './style.css';
+
 const taskList = document.querySelector(".list");
 let arr = [];
 let task = [
