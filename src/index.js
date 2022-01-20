@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import './index.css';
 
 const taskList = document.querySelector('.list');
