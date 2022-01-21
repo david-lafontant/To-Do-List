@@ -1,98 +1,95 @@
 import Task from './task.js';
 
 class displayTask {
-    static displayTasks() {
-      const tasks = Store.getTasks();
-      tasks.forEach((task) => displayTask.addTaskToList(task));
-    }
-  
-    static addTaskToList(task) {
-      const elementList = document.querySelector('.list');
-      const listItem = document.createElement('li');
-      listItem.setAttribute('class', 'item');
-  
-      listItem.innerHTML = `<input type="checkbox" id='${task.id}' name="taskStatus" class = 'taskStatus'>
+  static displayTasks() {
+    const tasks = Store.getTasks();
+    tasks.forEach((task) => displayTask.addTaskToList(task));
+  }
+
+  static addTaskToList(task) {
+    const elementList = document.querySelector('.list');
+    const listItem = document.createElement('li');
+    listItem.setAttribute('class', 'item');
+
+    listItem.innerHTML = `<input type="checkbox" id='${task.id}' name="taskStatus" class = 'taskStatus'>
                     <p class='description edit' contenteditable='true' id='${task.id}'>${task.description}</p>
                     <i class="fas fa-trash-alt remove-btn" id='${task.id}'></i>`;
-  
-      elementList.appendChild(listItem);
-    }
-  
-    static deleteTask(el) {
-      if (el.classList.contains('remove-btn')) {
-        el.parentElement.remove();
-      }
-    }
-  
- 
-    static clearFields() {
-      document.querySelector('#inputTask').value = '';
+
+    elementList.appendChild(listItem);
+  }
+
+  static deleteTask(el) {
+    if (el.classList.contains('remove-btn')) {
+      el.parentElement.remove();
     }
   }
 
-  class Store {
-    static getTasks() {
-      let tasks;
-      if (localStorage.getItem('tasks') === null) {
-        tasks = [];
+  static clearFields() {
+    document.querySelector('#inputTask').value = '';
+  }
+}
+
+class Store {
+  static getTasks() {
+    let tasks;
+    if (localStorage.getItem('tasks') === null) {
+      tasks = [];
+    } else {
+      tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+
+    return tasks;
+  }
+
+  static addTask(task) {
+    const tasks = Store.getTasks();
+    tasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+
+  static removeTask(elem) {
+    if (elem.classList.contains('remove-btn')) {
+      const tasks = Store.getTasks();
+      if (tasks.length === 1) {
+        tasks.pop();
       } else {
-        tasks = JSON.parse(localStorage.getItem('tasks'));
+        tasks.splice(parseInt(elem.id), 1);
+
+        tasks.forEach((element, index) => {
+          element.id = index;
+        });
       }
-  
-      return tasks;
-    }
-  
-    static addTask(task) {
-      const tasks = Store.getTasks();
-      tasks.push(task);
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-    }
-  
-    static removeTask(elem) {
-      if (elem.classList.contains('remove-btn')) {
-        const tasks = Store.getTasks();
-        if (tasks.length === 1) {
-          tasks.pop();
-        } else {
-          tasks.splice(parseInt(elem.id), 1);
-  
-          tasks.forEach((element, index) => {
-            element.id = index;
-          });
-        }
-        index = tasks.length;
-  
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-      }
-    }
-  
-    static modifyTask(elem) {
-      const tasks = Store.getTasks();
-      console.log(elem.id);
-      tasks[elem.id].description = elem.innerHTML;
-  
-      tasks.forEach((element, index) => {
-        element.id = index;
-      });
       index = tasks.length;
+
       localStorage.setItem('tasks', JSON.stringify(tasks));
     }
-
-    static CompletedTask(elem){
-      const tasks = Store.getTasks();
-      tasks[elem.id].completed = true;
-      tasks.forEach((element, index) => {
-        element.id = index;
-      });
-      index = tasks.length;
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-    }
-
-
   }
 
-  document.addEventListener('DOMContentLoaded', displayTask.displayTasks);
-  let index = 0;
+  static modifyTask(elem) {
+    const tasks = Store.getTasks();
+    console.log(elem.id);
+    tasks[elem.id].description = elem.innerHTML;
+
+    tasks.forEach((element, index) => {
+      element.id = index;
+    });
+    index = tasks.length;
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+
+  static CompletedTask(elem) {
+    const tasks = Store.getTasks();
+    tasks[elem.id].completed = true;
+    tasks.forEach((element, index) => {
+      element.id = index;
+    });
+    index = tasks.length;
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+}
+
+document.addEventListener('DOMContentLoaded', displayTask.displayTasks);
+let index = 0;
 
 // Event: Add a Task
 
@@ -148,32 +145,27 @@ document.querySelector('.list').addEventListener('change', (e) => {
 
   if (e.target.classList.contains('taskStatus')) {
     console.log(e.target.nextElementSibling);
-    if(e.target.checked){
-      //do something
-e.target.nextElementSibling.classList.add('line');
+    if (e.target.checked) {
+      // do something
+      e.target.nextElementSibling.classList.add('line');
       Store.CompletedTask(e.target);
-
-
-  }
-
+    }
   }
 });
 
-document.querySelector('.clrCompleted').addEventListener('click', (e)=>{
+document.querySelector('.clrCompleted').addEventListener('click', (e) => {
   e.preventDefault();
   let tasks = Store.getTasks();
-  const arr1 = tasks.filter( (el) => {
-    return el.completed === false;
-  });
+  const arr1 = tasks.filter((el) => el.completed === false);
   console.log(arr1);
   tasks = arr1;
   localStorage.setItem('tasks', JSON.stringify(tasks));
 
-const parent = document.querySelector('.list');
+  const parent = document.querySelector('.list');
   while (parent.firstChild) {
     parent.firstChild.remove();
-}
-displayTask.displayTasks();
+  }
+  displayTask.displayTasks();
 });
 
 export default addRemove;
