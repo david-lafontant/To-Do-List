@@ -21,7 +21,7 @@ TO-DO LIST is a basic website that allows users to add/remove task from a to-do 
 
 ## Live Demo
 
-[Live Demo Link](https://david-lafontant.github.io/To-Do-List/)
+[Live Demo Link](https://david-lafontant.github.io/To-Do-List/dist/index.html)
 
 
 ## Getting Started
