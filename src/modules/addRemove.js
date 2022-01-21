@@ -1,4 +1,4 @@
-import Task from './modules/task.js';
+import Task from './task.js';
 
 class displayTask {
     static displayTasks() {
