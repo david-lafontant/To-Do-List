@@ -43,13 +43,12 @@ main {
 }
 
 h1,
-.clearMsg p,
+.clrCompleted,
 li.item,
 #inputTask {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.carriageReturn,
 .fa-refresh,
 .clearMsg {
   font-size: 1.5rem;
@@ -86,12 +85,17 @@ li.item {
 }
 
 .description {
-  width: 80%;
+  width: 75%;
   font-size: 1.2rem;
+  margin-right: 4%;
 }
 
 @media screen and (max-width: 768px) {
   main {
     width: 70%;
   }
+}
+
+.line {
+  text-decoration: line-through;
 }
