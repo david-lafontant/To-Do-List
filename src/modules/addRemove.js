@@ -89,7 +89,7 @@ class Store {
 }
 
 document.addEventListener('DOMContentLoaded', displayTask.displayTasks);
-let index = 0;
+let index = 1;
 
 // Event: Add a Task
 
