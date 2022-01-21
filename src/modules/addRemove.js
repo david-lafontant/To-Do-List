@@ -56,7 +56,7 @@ class Store {
         tasks.splice(parseInt(elem.id), 1);
 
         tasks.forEach((element, index) => {
-          element.id = index;
+          element.id = index + 1;
         });
       }
       index = tasks.length;
@@ -71,7 +71,7 @@ class Store {
     tasks[elem.id].description = elem.innerHTML;
 
     tasks.forEach((element, index) => {
-      element.id = index;
+      element.id = index + 1;
     });
     index = tasks.length;
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -81,7 +81,7 @@ class Store {
     const tasks = Store.getTasks();
     tasks[elem.id].completed = true;
     tasks.forEach((element, index) => {
-      element.id = index;
+      element.id = index + 1;
     });
     index = tasks.length;
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -100,6 +100,9 @@ document.querySelector('#inputTask').addEventListener('keyup', (event) => {
     // Get form values
     const completed = false;
     const description = document.querySelector('#inputTask').value;
+    const tasks = Store.getTasks();
+    index = tasks.length + 1;
+
     const id = index;
 
     index++;
