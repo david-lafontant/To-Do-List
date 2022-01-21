@@ -8,6 +8,7 @@ TO-DO LIST is a basic website that allows users to add/remove task from a to-do 
 - Use webpack to bundle JavaScript.
 - Learn how to use proper ES6 syntax.
 - Use ES6 modules to write modular JavaScript.
+- Implement the CRUD (create, update, delete) methods. 
 
 ## Screenshot
 
