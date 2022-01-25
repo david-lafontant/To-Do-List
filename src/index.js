@@ -1,6 +1,6 @@
-import _ from 'lodash';
-import './index.css';
+// import _ from 'lodash';
+// import './index.css';
 
-import addRemove from './modules/addRemove.js';
+import addRemove from './script/addRemove.js';
 
 document.addEventListener('DOMContentLoaded', addRemove);
