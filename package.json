@@ -4,7 +4,7 @@
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "private": true,
   "scripts": {
-    "start": "npm run build",
+    "start": "webpack serve --open",
     "build": "webpack serve --open --config webpack.config.js"
   },
   "repository": {
