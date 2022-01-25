@@ -158,10 +158,10 @@ document.querySelector('.clrCompleted').addEventListener('click', (e) => {
   e.preventDefault();
 
   // taskCompleted interactive();
+  taskCompleted();
   const parent = document.querySelector('.list');
   while (parent.firstChild) {
     parent.firstChild.remove();
-    taskCompleted();
   }
   displayTask.displayTasks();
 });
