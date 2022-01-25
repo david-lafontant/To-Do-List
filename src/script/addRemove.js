@@ -67,7 +67,6 @@ class Store {
 
   static modifyTask(elem) {
     const tasks = Store.getTasks();
-    console.log(elem.id);
     tasks[elem.id - 1].description = elem.innerHTML;
 
     tasks.forEach((element, index) => {
@@ -148,7 +147,6 @@ document.querySelector('.list').addEventListener('change', (e) => {
   e.preventDefault();
 
   if (e.target.classList.contains('taskStatus')) {
-    console.log(e.target.nextElementSibling);
     if (e.target.checked) {
       e.target.nextElementSibling.classList.add('line');
       Store.CompletedTask(e.target);
