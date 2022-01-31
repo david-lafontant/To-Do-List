@@ -1,4 +1,5 @@
 import Task from './task.js';
+import taskCompleted from './removeCompleted.js';
 
 class displayTask {
   static displayTasks() {
@@ -12,8 +13,8 @@ class displayTask {
     listItem.setAttribute('class', 'item');
 
     listItem.innerHTML = `<input type="checkbox" id='${task.id}' name="taskStatus" class = 'taskStatus'>
-                    <p class='description edit' contenteditable='true' id='${task.id}'>${task.description}</p>
-                    <i class="fas fa-trash-alt remove-btn" id='${task.id}'></i>`;
+                      <p class='description edit' contenteditable='true' id='${task.id}'>${task.description}</p>
+                      <i class="fas fa-trash-alt remove-btn" id='${task.id}'></i>`;
 
     elementList.appendChild(listItem);
   }
@@ -54,11 +55,10 @@ class Store {
         tasks.pop();
       } else {
         tasks.splice(parseInt(elem.id), 1);
-
-        tasks.forEach((element, index) => {
-          element.id = index + 1;
-        });
       }
+      tasks.forEach((element, index) => {
+        element.id = index + 1;
+      });
       index = tasks.length;
 
       localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -67,8 +67,7 @@ class Store {
 
   static modifyTask(elem) {
     const tasks = Store.getTasks();
-    console.log(elem.id);
-    tasks[elem.id].description = elem.innerHTML;
+    tasks[elem.id - 1].description = elem.innerHTML;
 
     tasks.forEach((element, index) => {
       element.id = index + 1;
@@ -79,7 +78,7 @@ class Store {
 
   static CompletedTask(elem) {
     const tasks = Store.getTasks();
-    tasks[elem.id].completed = true;
+    tasks[elem.id - 1].completed = true;
     tasks.forEach((element, index) => {
       element.id = index + 1;
     });
@@ -89,6 +88,7 @@ class Store {
 }
 
 document.addEventListener('DOMContentLoaded', displayTask.displayTasks);
+
 let index = 1;
 
 // Event: Add a Task
@@ -111,7 +111,7 @@ document.querySelector('#inputTask').addEventListener('keyup', (event) => {
     if (description === '') {
       alert('Please fill in the field');
     } else {
-    // Instantiate task
+      // Instantiate task
       const task = new Task(description, id, completed);
 
       // Add Task to displayTask
@@ -147,9 +147,7 @@ document.querySelector('.list').addEventListener('change', (e) => {
   e.preventDefault();
 
   if (e.target.classList.contains('taskStatus')) {
-    console.log(e.target.nextElementSibling);
     if (e.target.checked) {
-      // do something
       e.target.nextElementSibling.classList.add('line');
       Store.CompletedTask(e.target);
     }
@@ -158,12 +156,9 @@ document.querySelector('.list').addEventListener('change', (e) => {
 
 document.querySelector('.clrCompleted').addEventListener('click', (e) => {
   e.preventDefault();
-  let tasks = Store.getTasks();
-  const arr1 = tasks.filter((el) => el.completed === false);
-  console.log(arr1);
-  tasks = arr1;
-  localStorage.setItem('tasks', JSON.stringify(tasks));
 
+  // taskCompleted interactive();
+  taskCompleted();
   const parent = document.querySelector('.list');
   while (parent.firstChild) {
     parent.firstChild.remove();

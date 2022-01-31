@@ -1,32 +1,31 @@
 {
-    "env": {
-      "browser": true,
-      "es6": true,
-      "jest": true
-    },
-    "parser": "babel-eslint",
-    "parserOptions": {
-      "ecmaVersion": 2018,
-      "sourceType": "module"
-    },
-    "extends": ["airbnb-base"],
-    "rules": {
-      "no-shadow": "off",
-      "no-param-reassign": "off",
-      "eol-last": "off",
-      "no-dupe-keys": "off",
-      "import/extensions": [ 1, {
-        "js": "always", "json": "always"
-      }],
-      "max-classes-per-file": 0,
-      "no-use-before-define": "off",
-      "radix": "off",
-      "no-undef": "off",
-      "no-plusplus": "off",
-      "no-unused-vars": "off"
-    },
-    "ignorePatterns": [
-      "dist/",
-      "build/"
-    ]
-  }
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "extends": ["airbnb-base"],
+  "rules": {
+    "no-shadow": "off",
+    "no-param-reassign": "off",
+    "eol-last": "off",
+    "max-classes-per-file": 0,
+    "no-use-before-define": "off",
+    "radix": "off",
+    "no-undef": "off",
+    "no-plusplus": "off",
+    "no-unused-vars": "off",
+    "import/extensions": [ 1, {
+      "js": "always", "json": "always"
+    }]
+  },
+  "ignorePatterns": [
+    "dist/",
+    "build/"
+  ]
+}
