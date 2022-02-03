@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "start": "webpack serve --open",
-    "build": "webpack serve --open --config webpack.config.js"
+    "build": "webpack serve --open --config webpack.config.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,8 @@
     "@babel/core": "^7.16.12",
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.4.7",
+    "jsdom": "^19.0.0",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.6",
     "webpack": "^5.67.0",
