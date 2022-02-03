@@ -36,9 +36,8 @@ const domHtml = new JSDOM(`<!DOCTYPE html>
 </body>
 
 </html>`
-
-
 , { url: 'https://localhost/' });
-global.document = domHtml.window.document;
+let globaldocument = domHtml.window.document;
 global.window = domHtml.window;
-exports.globaldocument = global.document;
+
+module.exports = globaldocument;
