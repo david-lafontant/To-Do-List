@@ -5,11 +5,11 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    static: './dist',
+    static: './docs',
   },
   entry: './src/index.js',
   devServer: {
-    static: './dist',
+    static: './docs',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -19,7 +19,7 @@ module.exports = {
   ],
   output: {
     filename: 'index.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'docs'),
     clean: true,
   },
   module: {
