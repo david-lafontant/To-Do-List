@@ -168,14 +168,12 @@ document.querySelector('.clrCompleted').addEventListener('click', (e) => {
 });
 
 document.querySelector('.fa-refresh').addEventListener('click', (e) => {
-e.preventDefault();
-clearAll();
-displayTask.displayTasks();
-const parent = document.querySelector('.list');
-while (parent.firstChild) {
-  parent.firstChild.remove();
-}
-
-
-})
+  e.preventDefault();
+  clearAll();
+  displayTask.displayTasks();
+  const parent = document.querySelector('.list');
+  while (parent.firstChild) {
+    parent.firstChild.remove();
+  }
+});
 export default addRemove;

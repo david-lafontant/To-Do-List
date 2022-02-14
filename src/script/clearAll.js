@@ -1,3 +1,3 @@
 export default function clearAll() {
-    localStorage.removeItem('tasks');
-} 
+  localStorage.removeItem('tasks');
+}

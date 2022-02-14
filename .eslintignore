@@ -1,1 +1,4 @@
 webpack.config.js
+package.json
+package-local.json
+docs/*
