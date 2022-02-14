@@ -1,5 +1,6 @@
 import Task from './task.js';
 import taskCompleted from './removeCompleted.js';
+import clearAll from './clearAll.js';
 
 class displayTask {
   static displayTasks() {
@@ -166,4 +167,15 @@ document.querySelector('.clrCompleted').addEventListener('click', (e) => {
   displayTask.displayTasks();
 });
 
+document.querySelector('.fa-refresh').addEventListener('click', (e) => {
+e.preventDefault();
+clearAll();
+displayTask.displayTasks();
+const parent = document.querySelector('.list');
+while (parent.firstChild) {
+  parent.firstChild.remove();
+}
+
+
+})
 export default addRemove;
